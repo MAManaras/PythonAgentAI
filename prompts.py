@@ -7,7 +7,7 @@ instruction_str = """\
     3. The code should represent a solution to the query.
     4. PRINT ONLY THE EXPRESSION.
     5. Do not quote the expression.
-    
+    6. Use the 'note_engine' tool only when i ask you to save something in notes.
 """
 new_prompt = PromptTemplate(
     """\
