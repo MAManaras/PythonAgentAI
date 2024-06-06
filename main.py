@@ -7,6 +7,7 @@ from note_engine import note_engine
 from llama_index.core.tools import QueryEngineTool, ToolMetadata
 from llama_index.core.agent import ReActAgent
 from llama_index.llms.openai import OpenAI
+from web_scrapping_engine import web_scrapping_engine
 # from pdf import canada_engine
 
 load_dotenv()
@@ -27,14 +28,15 @@ population_query_engine.update_prompts({"pandas_prompt": new_prompt})
 # population_query_engine.query("What is the population of Canada?")
 
 tools = [
-    note_engine,
-    QueryEngineTool(
-        query_engine=population_query_engine,
-        metadata=ToolMetadata(
-            name="population_data",
-            description="this gives information at the world population and demographics",
-        ),
-    )
+    web_scrapping_engine,
+    # note_engine,
+    # QueryEngineTool(
+    #     query_engine=population_query_engine,
+    #     metadata=ToolMetadata(
+    #         name="population_data",
+    #         description="this gives information at the world population and demographics",
+    #     ),
+    # )
     # QueryEngineTool(
     #     query_engine=canada_engine,
     #     metadata=ToolMetadata(
