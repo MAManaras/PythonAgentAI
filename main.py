@@ -8,7 +8,7 @@ from llama_index.core.tools import QueryEngineTool, ToolMetadata
 from llama_index.core.agent import ReActAgent
 from llama_index.llms.openai import OpenAI
 from web_scrapping_engine import web_scrapping_engine
-# from pdf import canada_engine
+from pdf import nbg_engine
 
 load_dotenv()
 
@@ -28,7 +28,7 @@ population_query_engine.update_prompts({"pandas_prompt": new_prompt})
 # population_query_engine.query("What is the population of Canada?")
 
 tools = [
-    web_scrapping_engine,
+    #web_scrapping_engine,
     # note_engine,
     # QueryEngineTool(
     #     query_engine=population_query_engine,
@@ -37,16 +37,16 @@ tools = [
     #         description="this gives information at the world population and demographics",
     #     ),
     # )
-    # QueryEngineTool(
-    #     query_engine=canada_engine,
-    #     metadata=ToolMetadata(
-    #         name="canada_data",
-    #         description="this gives detailed information about canada the country",
-    #     ),
-    # ),
+    QueryEngineTool(
+        query_engine=nbg_engine,
+        metadata=ToolMetadata(
+            name="nbg_data",
+            description="this gives detailed information about the data in the file",
+        ),
+    ),what is the percentage of Independent non-executive directors who are also women and between ages 30-50 in 2021
 ]
 
-llm = OpenAI(model="gpt-3.5-turbo-0125")
+llm = OpenAI(model="gpt-4-0125-preview")
 agent = ReActAgent.from_tools(tools, llm=llm, verbose=True, context=context)
 
 while (prompt := input("Enter a prompt (q to quit): ")) != "q":
