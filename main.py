@@ -27,7 +27,7 @@ population_query_engine = PandasQueryEngine(
 population_query_engine.update_prompts({"pandas_prompt": new_prompt})
 # population_query_engine.query("What is the population of Canada?")
 
-tools = [
+tools= [
     #web_scrapping_engine,
     # note_engine,
     # QueryEngineTool(
@@ -43,10 +43,10 @@ tools = [
             name="nbg_data",
             description="this gives detailed information about the data in the file",
         ),
-    ),what is the percentage of Independent non-executive directors who are also women and between ages 30-50 in 2021
+    ),
 ]
 
-llm = OpenAI(model="gpt-4-0125-preview")
+llm = OpenAI(model="gpt-3.5-0125")
 agent = ReActAgent.from_tools(tools, llm=llm, verbose=True, context=context)
 
 while (prompt := input("Enter a prompt (q to quit): ")) != "q":
